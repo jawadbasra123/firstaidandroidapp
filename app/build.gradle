@@ -51,6 +51,8 @@ dependencies {
 
     // Room (offline DB)
     implementation 'androidx.room:room-runtime:2.6.1'
+    implementation libs.navigation.fragment.ktx
+    implementation libs.navigation.ui.ktx
     annotationProcessor 'androidx.room:room-compiler:2.6.1'
 
     // Retrofit + Gson + OkHttp (for Gemini API)
