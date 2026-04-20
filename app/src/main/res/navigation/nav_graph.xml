@@ -44,5 +44,14 @@
         <argument
             android:name="topicTitle"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detail_to_cpr"
+            app:destination="@id/cprFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/cprFragment"
+        android:name="edu.northeastern.NUMAD26Sp_FirstAidEmergency.CprFragment"
+        android:label="CPR Metronome"
+        tools:layout="@layout/fragment_cpr" />
 </navigation>

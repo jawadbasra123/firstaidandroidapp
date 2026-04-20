@@ -9,8 +9,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.button.MaterialButton;
 
 import edu.northeastern.NUMAD26Sp_FirstAidEmergency.data.FirstAidDatabase;
 
@@ -34,7 +37,15 @@ public class TopicDetailFragment extends Fragment {
 
         TextView title = view.findViewById(R.id.title);
         TextView subtitle = view.findViewById(R.id.subtitle);
+        MaterialButton cprButton = view.findViewById(R.id.cpr_button);
         title.setText(topicTitle);
+
+        // Show CPR button only for CPR topics
+        if ("cpr_adult".equals(topicId) || "cpr_child".equals(topicId)) {
+            cprButton.setVisibility(View.VISIBLE);
+            cprButton.setOnClickListener(v ->
+                    Navigation.findNavController(view).navigate(R.id.action_detail_to_cpr));
+        }
 
         StepAdapter adapter = new StepAdapter();
         RecyclerView rv = view.findViewById(R.id.recycler);
