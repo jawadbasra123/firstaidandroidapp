@@ -4,11 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,8 +34,11 @@ public class HomeFragment extends Fragment {
         rv.setLayoutManager(new GridLayoutManager(requireContext(), 2));
 
         adapter = new TopicAdapter(topic -> {
-            Toast.makeText(requireContext(), topic.title + " tapped", Toast.LENGTH_SHORT).show();
-            // In Milestone 6 this will navigate to the detail screen.
+            Bundle args = new Bundle();
+            args.putString("topicId", topic.id);
+            args.putString("topicTitle", topic.title);
+            Navigation.findNavController(view)
+                    .navigate(R.id.action_home_to_detail, args);
         });
         rv.setAdapter(adapter);
 
