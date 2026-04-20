@@ -24,6 +24,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         manifestPlaceholders = [MAPS_API_KEY: localProps['MAPS_API_KEY'] ?: ""]
         buildConfigField("String", "MAPS_API_KEY", "\"${localProps['MAPS_API_KEY'] ?: ''}\"")
+        buildConfigField("String", "GEMINI_API_KEY", "\"${localProps['GEMINI_API_KEY'] ?: ''}\"")
     }
 
     buildTypes {

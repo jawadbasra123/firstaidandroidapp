@@ -19,8 +19,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ChatViewModel extends ViewModel {
-    // IMPORTANT: User should replace this with their actual Gemini API key
-    private static final String GEMINI_API_KEY = "AIzaSyBpEg1NDOMw1L6UUylXeizhIF-Nf_MqwlU";
+    private static final String GEMINI_API_KEY = BuildConfig.GEMINI_API_KEY;
     
     private static final String SYSTEM_PROMPT = "You are a First Aid Emergency Assistant. " +
             "Provide clear, concise, and accurate first aid advice. " +
