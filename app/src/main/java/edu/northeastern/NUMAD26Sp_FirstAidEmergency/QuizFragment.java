@@ -26,6 +26,9 @@ public class QuizFragment extends Fragment {
     private int score = 0;
     private boolean answered = false;
 
+    // Default button color used when resetting option buttons between questions.
+    private final int brandRed = Color.parseColor("#C62828");
+
     private TextView progress, questionText, explanation, scoreText;
     private MaterialButton optionA, optionB, optionC, optionD, nextButton, restartButton;
     private LinearLayout questionGroup, resultGroup;
@@ -136,6 +139,7 @@ public class QuizFragment extends Fragment {
     }
 
     private void resetButtons() {
+        optionA.setBackgroundColor(brandRed);
         optionB.setBackgroundColor(brandRed);
         optionC.setBackgroundColor(brandRed);
         optionD.setBackgroundColor(brandRed);
