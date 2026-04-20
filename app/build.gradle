@@ -2,6 +2,12 @@ plugins {
     alias(libs.plugins.android.application)
 }
 
+def localProps = new Properties()
+def localPropsFile = rootProject.file("local.properties")
+if (localPropsFile.exists()) {
+    localPropsFile.withReader('UTF-8') { reader -> localProps.load(reader) }
+}
+
 android {
     namespace 'edu.northeastern.NUMAD26Sp_FirstAidEmergency'
     compileSdk {
@@ -16,6 +22,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [MAPS_API_KEY: localProps['MAPS_API_KEY'] ?: ""]
+        buildConfigField("String", "MAPS_API_KEY", "\"${localProps['MAPS_API_KEY'] ?: ''}\"")
     }
 
     buildTypes {
@@ -30,6 +38,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
 
 }
