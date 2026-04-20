@@ -226,19 +226,13 @@ public class HospitalsFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void openNavigation(Hospital hospital) {
+        // Use place_id for exact destination matching — raw lat/lng can snap to nearby buildings
         Uri navUri = Uri.parse(
-                "google.navigation:q=" + hospital.getLat() + "," + hospital.getLng() + "&mode=d");
-        Intent intent = new Intent(Intent.ACTION_VIEW, navUri);
-        intent.setPackage("com.google.android.apps.maps");
-
-        if (intent.resolveActivity(requireActivity().getPackageManager()) != null) {
-            startActivity(intent);
-        } else {
-            // Fallback: open in browser
-            Uri fallback = Uri.parse("https://maps.google.com/?daddr="
-                    + hospital.getLat() + "," + hospital.getLng() + "&directionsmode=driving");
-            startActivity(new Intent(Intent.ACTION_VIEW, fallback));
-        }
+                "https://www.google.com/maps/dir/?api=1"
+                + "&destination=" + Uri.encode(hospital.getName())
+                + "&destination_place_id=" + hospital.getPlaceId()
+                + "&travelmode=driving");
+        startActivity(new Intent(Intent.ACTION_VIEW, navUri));
     }
 
     private void showLoading(boolean loading) {
