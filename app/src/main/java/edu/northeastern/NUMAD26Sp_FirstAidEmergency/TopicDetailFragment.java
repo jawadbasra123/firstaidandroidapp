@@ -1,5 +1,7 @@
 package edu.northeastern.NUMAD26Sp_FirstAidEmergency;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,12 +37,20 @@ public class TopicDetailFragment extends Fragment {
         String topicId = args != null ? args.getString("topicId") : null;
         String topicTitle = args != null ? args.getString("topicTitle") : "Details";
 
+        TextView headerTitle = view.findViewById(R.id.header_title);
+        View header911 = view.findViewById(R.id.header_911_button);
+        headerTitle.setText("First Aid Emergency");
+        header911.setOnClickListener(v -> {
+            Intent i = new Intent(Intent.ACTION_DIAL);
+            i.setData(Uri.parse("tel:911"));
+            startActivity(i);
+        });
+
         TextView title = view.findViewById(R.id.title);
         TextView subtitle = view.findViewById(R.id.subtitle);
         MaterialButton cprButton = view.findViewById(R.id.cpr_button);
         title.setText(topicTitle);
 
-        // Show CPR button only for CPR topics
         if ("cpr_adult".equals(topicId) || "cpr_child".equals(topicId)) {
             cprButton.setVisibility(View.VISIBLE);
             cprButton.setOnClickListener(v ->

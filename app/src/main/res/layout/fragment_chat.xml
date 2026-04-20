@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChatFragment">
+    android:orientation="vertical"
+    android:background="#FAFAFA">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <include layout="@layout/header_bar" android:id="@+id/header" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp">
 
-</FrameLayout>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="🤖" android:textSize="64sp" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" android:text="AI Coming Soon"
+            android:textSize="22sp" android:textStyle="bold" android:textColor="#1B1B1B" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="12dp" android:gravity="center" android:textSize="14sp"
+            android:textColor="@color/muted_text"
+            android:text="Describe an emergency in plain English and get instant AI-powered guidance." />
+    </LinearLayout>
+</LinearLayout>

@@ -1,6 +1,8 @@
 package edu.northeastern.NUMAD26Sp_FirstAidEmergency;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +43,14 @@ public class QuizFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // Header setup
+        ((TextView) view.findViewById(R.id.header_title)).setText("First Aid Quiz");
+        view.findViewById(R.id.header_911_button).setOnClickListener(v -> {
+            Intent i = new Intent(Intent.ACTION_DIAL);
+            i.setData(Uri.parse("tel:911"));
+            startActivity(i);
+        });
 
         progress = view.findViewById(R.id.progress);
         questionText = view.findViewById(R.id.question_text);
@@ -113,10 +123,10 @@ public class QuizFragment extends Fragment {
         answered = true;
         QuizQuestion q = questions.get(currentIndex);
         if (choice == q.correctIndex) {
-            btn.setBackgroundColor(Color.parseColor("#2E7D32")); // green
+            btn.setBackgroundColor(Color.parseColor("#2E7D32"));
             score++;
         } else {
-            btn.setBackgroundColor(Color.parseColor("#C62828")); // red
+            btn.setBackgroundColor(Color.parseColor("#C62828"));
             highlightCorrect(q.correctIndex);
         }
         explanation.setVisibility(View.VISIBLE);
@@ -136,6 +146,8 @@ public class QuizFragment extends Fragment {
     }
 
     private void resetButtons() {
+        int brandRed = getResources().getColor(R.color.brand_red, null);
+        optionA.setBackgroundColor(brandRed);
         optionB.setBackgroundColor(brandRed);
         optionC.setBackgroundColor(brandRed);
         optionD.setBackgroundColor(brandRed);

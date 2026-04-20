@@ -1,5 +1,7 @@
 package edu.northeastern.NUMAD26Sp_FirstAidEmergency;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -7,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,6 +47,12 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Header setup
+        TextView headerTitle = view.findViewById(R.id.header_title);
+        View header911 = view.findViewById(R.id.header_911_button);
+        headerTitle.setText("First Aid Emergency");
+        header911.setOnClickListener(v -> call911());
+
         RecyclerView rv = view.findViewById(R.id.recycler);
         rv.setLayoutManager(new GridLayoutManager(requireContext(), 2));
 
@@ -59,30 +68,29 @@ public class HomeFragment extends Fragment {
         dao = FirstAidDatabase.getInstance(requireContext()).dao();
         observer = topics -> adapter.submitList(topics);
 
-        // Initial: load all topics
         swapSource(dao.getAllTopics());
 
-        // Search input
         TextInputEditText searchInput = view.findViewById(R.id.search_input);
         searchInput.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int a, int b, int c) {}
             @Override public void onTextChanged(CharSequence s, int a, int b, int c) {
                 String q = s.toString().trim();
-                if (TextUtils.isEmpty(q)) {
-                    swapSource(dao.getAllTopics());
-                } else {
-                    swapSource(dao.search("%" + q + "%"));
-                }
+                if (TextUtils.isEmpty(q)) swapSource(dao.getAllTopics());
+                else swapSource(dao.search("%" + q + "%"));
             }
             @Override public void afterTextChanged(Editable s) {}
         });
     }
 
     private void swapSource(LiveData<List<FirstAidTopic>> newSource) {
-        if (currentSource != null) {
-            currentSource.removeObserver(observer);
-        }
+        if (currentSource != null) currentSource.removeObserver(observer);
         currentSource = newSource;
         currentSource.observe(getViewLifecycleOwner(), observer);
+    }
+
+    private void call911() {
+        Intent i = new Intent(Intent.ACTION_DIAL);
+        i.setData(Uri.parse("tel:911"));
+        startActivity(i);
     }
 }

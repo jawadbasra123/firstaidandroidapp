@@ -23,16 +23,4 @@
         app:itemIconTint="@color/brand_red"
         app:itemTextColor="@color/brand_red" />
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fab_911"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="16dp"
-        android:layout_marginBottom="88dp"
-        android:text="911"
-        android:textColor="@color/brand_white"
-        android:contentDescription="Call 911"
-        app:backgroundTint="@color/brand_red" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

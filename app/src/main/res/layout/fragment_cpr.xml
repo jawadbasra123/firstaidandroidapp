@@ -6,29 +6,7 @@
     android:orientation="vertical"
     android:background="#FAFAFA">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp"
-        android:background="@color/brand_red">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CPR Metronome"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/brand_white" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="100–120 compressions per minute"
-            android:textSize="14sp"
-            android:textColor="@color/brand_white" />
-    </LinearLayout>
+    <include layout="@layout/header_bar" android:id="@+id/header" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -95,6 +73,7 @@
         android:padding="14dp"
         android:text="START"
         android:textSize="18sp"
+        app:cornerRadius="12dp"
         app:backgroundTint="@color/brand_red" />
 
     <TextView

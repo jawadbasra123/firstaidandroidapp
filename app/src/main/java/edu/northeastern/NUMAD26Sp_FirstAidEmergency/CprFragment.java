@@ -1,8 +1,10 @@
 package edu.northeastern.NUMAD26Sp_FirstAidEmergency;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,6 +49,14 @@ public class CprFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // Header setup
+        ((TextView) view.findViewById(R.id.header_title)).setText("CPR Metronome");
+        view.findViewById(R.id.header_911_button).setOnClickListener(v -> {
+            Intent i = new Intent(Intent.ACTION_DIAL);
+            i.setData(Uri.parse("tel:911"));
+            startActivity(i);
+        });
 
         vibrator = (Vibrator) requireContext().getSystemService(Context.VIBRATOR_SERVICE);
 
