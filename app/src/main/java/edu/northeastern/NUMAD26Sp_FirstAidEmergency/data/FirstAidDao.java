@@ -30,4 +30,12 @@ public interface FirstAidDao {
 
     @Query("SELECT COUNT(*) FROM topics")
     int countTopics();
+    @androidx.room.Insert(onConflict = androidx.room.OnConflictStrategy.REPLACE)
+    void insertQuestions(java.util.List<QuizQuestion> questions);
+
+    @androidx.room.Query("SELECT * FROM quiz_questions ORDER BY RANDOM() LIMIT :limit")
+    androidx.lifecycle.LiveData<java.util.List<QuizQuestion>> getRandomQuestions(int limit);
+
+    @androidx.room.Query("SELECT COUNT(*) FROM quiz_questions")
+    int countQuestions();
 }

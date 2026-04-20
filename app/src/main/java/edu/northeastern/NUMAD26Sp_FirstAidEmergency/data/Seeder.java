@@ -178,8 +178,53 @@ public class Seeder {
                 {"If not breathing normally, begin CPR.", null},
                 {"Cover burns with clean cloth. Don't move if fall injury is suspected.", null}
         });
-
         dao.insertSteps(steps);
+
+        List<QuizQuestion> quiz = new ArrayList<>();
+        quiz.add(new QuizQuestion("How fast should chest compressions be during adult CPR?",
+                "60-80 per minute", "100-120 per minute", "150-180 per minute", "As fast as possible",
+                1, "AHA guidelines call for 100-120 compressions per minute."));
+        quiz.add(new QuizQuestion("How deep should chest compressions be on an adult?",
+                "About 1 inch", "About 2 inches", "About 4 inches", "As deep as possible",
+                1, "At least 2 inches (5 cm) but not more than 2.4 inches."));
+        quiz.add(new QuizQuestion("What should you do FIRST for a minor burn?",
+                "Apply butter", "Cover with ice", "Run cool water over it for 20 minutes", "Pop any blisters",
+                2, "Cool running water for 20 minutes is the standard. Never use ice or butter."));
+        quiz.add(new QuizQuestion("If an adult is choking and cannot speak, what do you do first?",
+                "Give them water", "Give 5 back blows between the shoulder blades",
+                "Put your finger in their mouth", "Wait to see if it clears",
+                1, "5 back blows first, then 5 abdominal thrusts. Alternate until clear."));
+        quiz.add(new QuizQuestion("What does the 'F' in FAST stand for?",
+                "Fainting", "Fever", "Face drooping", "Falling",
+                2, "FAST = Face drooping, Arm weakness, Speech difficulty, Time to call 911."));
+        quiz.add(new QuizQuestion("If blood soaks through the cloth pressing on a wound, you should:",
+                "Lift the cloth and look", "Add more cloth on top and keep pressing",
+                "Pour water on it", "Apply a tourniquet immediately",
+                1, "Never lift the cloth - it disrupts the clot. Add more on top."));
+        quiz.add(new QuizQuestion("If someone swallows a poison and is alert, you should:",
+                "Make them vomit", "Give them milk",
+                "Call Poison Control (1-800-222-1222)", "Give them activated charcoal",
+                2, "Always call Poison Control first - never induce vomiting unless told to."));
+        quiz.add(new QuizQuestion("After using an EpiPen for anaphylaxis, you should:",
+                "Wait at home to see if it works", "Call 911 immediately",
+                "Take an antihistamine and rest", "Use a second EpiPen right away",
+                1, "Always call 911 after EpiPen - symptoms can return within hours."));
+        quiz.add(new QuizQuestion("During a seizure, you should:",
+                "Hold the person down", "Put something in their mouth",
+                "Move objects away and cushion their head", "Give them water",
+                2, "Never restrain or put anything in their mouth. Protect them from injury."));
+        quiz.add(new QuizQuestion("Which is WRONG for a snake bite?",
+                "Keep the person calm and still", "Cut the wound and suck out the venom",
+                "Keep the limb below heart level", "Call 911",
+                1, "Cutting and sucking is dangerous and ineffective - just immobilize and get help."));
+        quiz.add(new QuizQuestion("For a suspected heart attack, if they aren't allergic, you can give:",
+                "Two ibuprofen", "One adult aspirin to chew", "Acetaminophen", "Nothing by mouth ever",
+                1, "Chewing one adult aspirin (325 mg) can help if no allergies and no bleeding."));
+        quiz.add(new QuizQuestion("When warming a hypothermic person, you should warm:",
+                "Arms and legs first", "The whole body equally",
+                "The chest, neck, and groin first", "Just the head",
+                2, "Warm the core first. Warming limbs first can cause cardiac arrest."));
+        dao.insertQuestions(quiz);
     }
 
     private static void addSteps(List<FirstAidStep> list, String topicId, String[][] entries) {
